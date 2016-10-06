@@ -109,7 +109,7 @@ namespace Ruler
 
         private void SetUpMenu(RulerInfo rulerInfo)
         {
-            this.AddMenuItem("Stay On Top");
+            MenuItem stayOnTopMenuItem = this.AddMenuItem("Stay On Top");
             this._verticalMenuItem = this.AddMenuItem("Vertical");
             this._toolTipMenuItem = this.AddMenuItem("Tool Tip");
             MenuItem opacityMenuItem = this.AddMenuItem("Opacity");
@@ -120,6 +120,9 @@ namespace Ruler
             this.AddMenuItem("About...");
             this.AddMenuItem("-");
             this.AddMenuItem("Exit");
+
+            stayOnTopMenuItem.Checked = rulerInfo.TopMost;
+            _lockedMenuItem.Checked = rulerInfo.IsLocked;
 
             for (int i = 10; i <= 100; i += 10)
             {
