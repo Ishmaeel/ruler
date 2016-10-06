@@ -569,6 +569,8 @@ namespace Ruler
 			int width = Width;
 			this.Width = Height;
 			this.Height = width;
+
+            Invalidate();
 		}
 	}
 }
