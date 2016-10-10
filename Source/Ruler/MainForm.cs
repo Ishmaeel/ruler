@@ -493,11 +493,19 @@ namespace Ruler
 
         private void DrawTickLabel(Graphics g, string text, int xPos, int formHeight, int height)
         {
-            // Top
-            g.DrawString(text, Font, Brushes.Black, xPos, height);
+            if (formHeight < 60)
+            {
+                // Middle
+                g.DrawString(text, Font, Brushes.Black, xPos, (formHeight / 2) - (Font.Height / 2));
+            }
+            else
+            {
+                // Top
+                g.DrawString(text, Font, Brushes.Black, xPos, height);
 
-            // Bottom
-            g.DrawString(text, Font, Brushes.Black, xPos, formHeight - height - Font.Height);
+                // Bottom
+                g.DrawString(text, Font, Brushes.Black, xPos, formHeight - height - Font.Height);
+            }
         }
 
         private static void Main(params string[] args)
