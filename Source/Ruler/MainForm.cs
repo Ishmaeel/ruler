@@ -177,7 +177,7 @@ namespace Ruler
             _mouseDownPoint = MousePosition;
             _mouseDownRect = ClientRectangle;
 
-            if (IsInResizableArea())
+            if (!IsLocked && IsInResizableArea())
                 _dragMode = DragMode.Resize;
             else
                 _dragMode = DragMode.Move;
@@ -382,6 +382,9 @@ namespace Ruler
 
         private void SetResizeCursor(ResizeRegion region)
         {
+            if (IsLocked)
+                return;
+
             switch (region)
             {
                 case ResizeRegion.N:
