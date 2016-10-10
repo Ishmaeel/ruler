@@ -95,6 +95,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums.cs" />
     <Compile Include="ExtensionSupport.cs" />
     <Compile Include="IRulerInfo.cs" />
     <Compile Include="RulerInfo.cs" />

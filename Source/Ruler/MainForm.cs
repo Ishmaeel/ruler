@@ -8,20 +8,6 @@ namespace Ruler
 {
     sealed public class MainForm : Form, IRulerInfo
     {
-        #region Enums
-
-        private enum ResizeRegion
-        {
-            None, N, NE, E, SE, S, SW, W, NW
-        }
-
-        private enum DragMode
-        {
-            None, Move, Resize
-        }
-
-        #endregion Enums
-
         private ToolTip _toolTip = new ToolTip();
         private Point _offset;
         private Rectangle _mouseDownRect;
@@ -368,26 +354,29 @@ namespace Ruler
                 return;
             }
 
-            switch (_resizeRegion)
+            int diffX = MousePosition.X - _mouseDownPoint.X;
+            int diffY = MousePosition.Y - _mouseDownPoint.Y;
+
+            if ((_resizeRegion & ResizeRegion.N) != 0)
             {
-                case ResizeRegion.E:
-                    {
-                        int diff = MousePosition.X - _mouseDownPoint.X;
-                        Width = _mouseDownRect.Width + diff;
-                        break;
-                    }
-                case ResizeRegion.S:
-                    {
-                        int diff = MousePosition.Y - _mouseDownPoint.Y;
-                        Height = _mouseDownRect.Height + diff;
-                        break;
-                    }
-                case ResizeRegion.SE:
-                    {
-                        Width = _mouseDownRect.Width + MousePosition.X - _mouseDownPoint.X;
-                        Height = _mouseDownRect.Height + MousePosition.Y - _mouseDownPoint.Y;
-                        break;
-                    }
+                Top = MousePosition.Y;
+                diffY = -diffY;
+            }
+
+            if ((_resizeRegion & ResizeRegion.W) != 0)
+            {
+                Left = MousePosition.X;
+                diffX = -diffX;
+            }
+
+            if ((_resizeRegion & ResizeRegion.N) != 0 || (_resizeRegion & ResizeRegion.S) != 0)
+            {
+                Height = _mouseDownRect.Height + diffY;
+            }
+
+            if ((_resizeRegion & ResizeRegion.W) != 0 || (_resizeRegion & ResizeRegion.E) != 0)
+            {
+                Width = _mouseDownRect.Width + diffX;
             }
         }
 
