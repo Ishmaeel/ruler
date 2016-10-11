@@ -383,7 +383,10 @@ namespace Ruler
         private void SetResizeCursor(ResizeRegion region)
         {
             if (IsLocked)
+            {
+                Cursor = Cursors.Default;
                 return;
+            }
 
             switch (region)
             {
