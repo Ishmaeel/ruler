@@ -458,7 +458,7 @@ namespace Ruler
             g.DrawRectangle(Pens.Black, 0, 0, formWidth - 1, formHeight - 1);
 
             // Width
-            g.DrawString(formWidth + " pixels", Font, Brushes.Black, 10, (formHeight / 2) - (Font.Height / 2));
+            g.DrawString(formWidth + " pixels", Font, Brushes.Black, 20, (formHeight / 2) - (Font.Height / 2));
 
             // Ticks
             for (int i = 0; i < formWidth; i++)
