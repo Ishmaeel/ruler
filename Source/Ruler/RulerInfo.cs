@@ -95,7 +95,7 @@ namespace Ruler
 			rulerInfo.ShowToolTip = false;
 			rulerInfo.IsLocked = false;
 			rulerInfo.IsVertical = false;
-			rulerInfo.TopMost = false;
+			rulerInfo.TopMost = true;
 
 			return rulerInfo;
 		}
